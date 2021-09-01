@@ -44,7 +44,7 @@ cAMARETTOnetworkC<-cAMARETTO_IdentifyCom2(cAMARETTOnetworkM,
                                           ratioRunSize = 0.1,
                                           ratioEdgesInOut = 0.5)
 
-
+saveRDS(cAMARETTOnetworkC,"./promote/cAMARETTO_report_TraRe/network_promote_21k_50b.rds")
 # Run html - enrichment communities ---------------------------------------
 
 
