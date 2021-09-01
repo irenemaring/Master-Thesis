@@ -8,28 +8,15 @@ source(paste0(getwd(),'/scripts/rewiring_single_module.R'))
 
 ## INPUT FILE'S path:
 
-# linker_output_p <- './sm_3500_linker_output_50bootstraps.rds'
+# linker_output_p <- './promote/sm_3500_linker_output_50bootstraps.rds'
 # 
-# exp_p <- './mrm_sm_3500.txt'
+# exp_p <- './promote/mrm_sm_3500.txt'
 # 
-# gene_info_p <-'./promote_v1.gene_info.txt'
+# gene_info_p <-'./promote/promote_v1.gene_info.txt'
 # 
-# clinic_p <- './promote_v1_clinical_ours_improved.txt'
+# clinic_p <- './promote/promote_v1_clinical_ours_improved.txt'
 # 
 # rewired50boots_p <- './50b_graphs_rew_names.txt'
-###SU2c
-linker_output_p <- paste0(getwd(),"/output_margaret/su2c/su2c_50bootstraps.rds")
-# 
- exp_p <- paste0(getwd(),"/input_data/su2c/su2c_121samples_naive.txt")
-# 
- gene_info_p <-paste0(getwd(),"/input_data/su2c/su2c_geneinfo.txt")
-# 
- clinic_p <- paste0(getwd(),"/input_data/su2c/su2c_clinical_ABI (2).txt")
-# 
- rewired50boots_p <- paste0(getwd(),"/output_margaret/su2c/rewiring_equivalency_su2c.rds")
-
-
-
 
 ### SUMMARY of FUNCTIONS:
 
@@ -188,7 +175,7 @@ rewiring_regulon <- function(regulons_all_modules,
 
 #use
 finals_adj <- rewiring_regulon(regulons_all_modules,linker_output_p,exp_p,gene_info_p,clinic_p)
-#saveRDS(finals_adj, paste0(getwd(), "/output_margaret/su2c/regulons_finals_adj2.rds"))
+#saveRDS(finals_adj,  "./promote/regulons_finals_adj2.rds")
 # fishermeth --------------------------------------------------------------
 
 fishermeth <- function(pvals_v,showmess=FALSE,method='NA'){
@@ -351,12 +338,12 @@ order_filtr_regulons <- lapply(filtered_regulons, function(x){
   y <- as.data.frame(x)
   y[order(y$multiplicity,decreasing = TRUE),]
 })
-#saveRDS(order_filtr_regulons,paste0(getwd(), "/output_margaret/su2c/order_filt_regulons_not_padj.rds"))
+#saveRDS(order_filtr_regulons, "./promote/order_filt_regulons_50.rds")
 
 # igraphs
 
-order_filtr_regulons_graphs <-  lapply(order_filtr_regulons,function(x){
-  g <- igraph::graph_from_data_frame(x[,1:2],directed = F)
-  igraph::set_edge_attr(g, "weight",index = E(g), x$multiplicity)
-})
+# order_filtr_regulons_graphs <-  lapply(order_filtr_regulons,function(x){
+#   g <- igraph::graph_from_data_frame(x[,1:2],directed = F)
+#   igraph::set_edge_attr(g, "weight",index = E(g), x$multiplicity)
+# })
 
